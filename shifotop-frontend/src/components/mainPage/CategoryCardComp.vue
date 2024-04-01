@@ -9,48 +9,54 @@
 
     <ul class="list">
       <li v-for="(item, index) in items" :key="index">
-        <a href="#" @click.prevent="fetchRelatedData(item.name)">
+        <a href="#" @click="handleItemClick(item)">
           {{ item.name }} <span class="value">{{ item.count }}</span>
         </a>
       </li>
     </ul>
     <button class="btn-all">{{ buttonText }}</button>
+
+    <ItemDetails v-if="showDetails" :itemName="selectedItem" :details="relatedData" />
   </div>
 </template>
 
 <script>
-import axios from 'axios'; // Import axios to make requests to the backend
+import axios from 'axios';
+import ItemDetails from "@/components/mainPage/ItemDetails.vue";
 
 export default {
   name: 'CategoryCardComp',
+  components: {
+    ItemDetails
+  },
   props: {
     title: String,
     buttonText: String,
-    //these below will come from backend
     count: Number, //this is for items(doctor, clinic, service, diagnostic) count
-    items: Array
-  },
-  methods: {
-    async fetchRelatedData(itemName) {
-      try {
-        // Replace '/api/related-data/' with the actual endpoint
-        // and append the item name to fetch its related data
-        const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}/api/related-data/${itemName}`);
-
-        // Now, you can either update the state with this data to show it in a list on this page
-        this.relatedData = response.data;
-
-        // Or you can route to a new page with this data, depending on your app's structure
-        this.$router.push({ name: 'ItemDetails', params: { itemName, data: response.data } });
-      } catch (error) {
-        console.error('Error fetching related data:', error);
-        // Handle the error as you see fit
-      }
-    }
+    items: Array,
+    type: String, // Add type as a prop if it's not part of each item
   },
   data() {
     return {
-      relatedData: null,
+      relatedTitle: '',
+      showDetails: false,
+      relatedData: null
+    };
+  },
+  methods: {
+    handleItemClick(item) {
+      // this.selectedType = this.type;
+      this.fetchRelatedData(item.name, this.type);
+    },
+    async fetchRelatedData(itemName, type) {
+      try {
+        const response = await axios.get(`/api/related-data/${type}/${itemName}`);
+        this.relatedData = response.data;
+        this.relatedTitle = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize the first letter of the type
+        this.showDetails = true; // Show the ItemDetails component
+      } catch (error) {
+        console.error('Error fetching related data:', error);
+      }
     }
   }
 };

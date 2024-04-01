@@ -11,10 +11,10 @@
           <i class="fas fa-fire icon-style"></i> Popular in Tashkent
         </h2>
         <div class="category-cards">
-          <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" buttonText="All Doctors" />
-          <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" buttonText="All Clinics" />
-          <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" buttonText="All Services" />
-          <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" buttonText="All Diagnostics" />
+          <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="doctors" buttonText="All Doctors" />
+          <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="clinics" buttonText="All Clinics" />
+          <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="services" buttonText="All Services" />
+          <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="services" buttonText="All Diagnostics" />
         </div>
       </section>
     </main>

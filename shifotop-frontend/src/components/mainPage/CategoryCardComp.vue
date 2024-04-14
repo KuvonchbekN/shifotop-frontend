@@ -14,7 +14,7 @@
         </a>
       </li>
     </ul>
-    <button class="btn-all">{{ buttonText }}</button>
+    <button class="btn-all" @click="fetchAllData">{{ buttonText }}</button>
 
     <ItemDetails v-if="showDetails" :itemName="selectedItem" :details="relatedData" />
   </div>
@@ -45,9 +45,9 @@ export default {
   },
   methods: {
     handleItemClick(item) {
-      // this.selectedType = this.type;
       this.fetchRelatedData(item.name, this.type);
     },
+    
     async fetchRelatedData(itemName, type) {
       try {
         const response = await axios.get(`/api/related-data/${type}/${itemName}`);
@@ -57,6 +57,11 @@ export default {
       } catch (error) {
         console.error('Error fetching related data:', error);
       }
+    }, 
+
+    async fetchAllData() {
+      console.log("button all is clicked, type:"  + this.type); 
+      this.$emit('fetch-category', this.type);
     }
   }
 };

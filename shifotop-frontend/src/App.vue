@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <HomeViewComp />
+    <HomeViewComp /> //todo maybe we have to remove this after adding routing
+    <router-view />
   </div>
 </template>
 

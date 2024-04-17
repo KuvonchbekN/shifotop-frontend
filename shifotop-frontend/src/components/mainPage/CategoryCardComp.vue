@@ -8,63 +8,35 @@
     <hr class="divider" />
 
     <ul class="list">
-      <li v-for="(item, index) in items" :key="index">
-        <a href="#" @click="handleItemClick(item)">
-          {{ item.name }} <span class="value">{{ item.count }}</span>
-        </a>
+      <li v-for="(subcat, index) in items" :key="index">  <!-- subcat==subcategory in doctor,clinic card -->
+        <router-link :to="{ name: 'subcat', params: { type: type, itemName: subcat.name } }">
+          {{ subcat.name }} <span class="value">{{ subcat.count }}</span>
+        </router-link>
       </li>
     </ul>
-    <button class="btn-all" @click="fetchAllData">{{ buttonText }}</button>
 
-    <ItemDetails v-if="showDetails" :itemName="selectedItem" :details="relatedData" />
+    <button class="btn-all" @click="goToCategory">{{ buttonText }}</button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import ItemDetails from "@/components/mainPage/ItemDetails.vue";
-
 export default {
   name: 'CategoryCardComp',
-  components: {
-    ItemDetails
-  },
-  props: {
+  components: {},
+  props: { //these are all passed from HomeComp 
     title: String,
     buttonText: String,
     count: Number, //this is for items(doctor, clinic, service, diagnostic) count
     items: Array,
     type: String, // Add type as a prop if it's not part of each item
   },
-  data() {
-    return {
-      relatedTitle: '',
-      showDetails: false,
-      relatedData: null
-    };
-  },
-  methods: {
-    handleItemClick(item) {
-      this.fetchRelatedData(item.name, this.type);
-    },
-    
-    async fetchRelatedData(itemName, type) {
-      try {
-        const response = await axios.get(`/api/related-data/${type}/${itemName}`);
-        this.relatedData = response.data;
-        this.relatedTitle = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize the first letter of the type
-        this.showDetails = true; // Show the ItemDetails component
-      } catch (error) {
-        console.error('Error fetching related data:', error);
-      }
-    }, 
 
-    async fetchAllData() {
-      console.log("button all is clicked, type:"  + this.type); 
-      this.$emit('fetch-category', this.type);
+  methods: {
+    goToCategory() {
+      this.$router.push({ name: 'categoryView', params: { category: this.type } });
     }
   }
-};
+}; 
 </script>
 
 <style scoped>

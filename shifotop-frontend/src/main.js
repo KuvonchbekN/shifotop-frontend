@@ -1,25 +1,22 @@
 import App from './App.vue'
 import '@fortawesome/fontawesome-free/css/all.css';
-import DoctorsDisplayComp from './components/listPages/DoctorsDisplayComp.vue';
 import HomeComp from './components/mainPage/HomeComp.vue';
-import ClinicsDisplayComp from './components/listPages/ClinicsDisplayComp.vue';
-import ServicesDisplayComp from './components/listPages/ServicesDisplayComp.vue';
-import DiagnosticsDisplayComp from './components/listPages/DiagnosticsDisplayComp.vue';
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import ItemDetails from './components/mainPage/ItemDetails.vue';
+import CategoryViewComp from './components/mainPage/CategoryViewComp.vue';
+import SubcategoryComp from './components/mainPage/SubcategoryComp.vue';
 
 // Create router instance
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/', component: HomeComp },
-        { path: '/doctors', component: DoctorsDisplayComp },
-        { path: '/clinics', component: ClinicsDisplayComp },
-        { path: '/services', component: ServicesDisplayComp },
-        { path: '/diagnostics', component: DiagnosticsDisplayComp },
-        // { path: '/', component: HomeComp },
+        { name: 'home', path: '/', component: HomeComp },
+        { name: 'itemDetails', path: '/:type/:itemId', component: ItemDetails, props: true },
+        { name: 'categoryView', path: '/:category', component: CategoryViewComp, props: true },
+        { name: 'subcat', path: '/details/:type/:itemName', component: SubcategoryComp, props: true }
     ]
 })
-  
+
 
 createApp(App).use(router).mount('#app');

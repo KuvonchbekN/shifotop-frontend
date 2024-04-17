@@ -6,23 +6,17 @@
       <p class="description">Website for reviews of Doctors No.1 in Uzbekistan</p>
       <SearchBarComp />
 
-      <section class="popular-section" v-if="activeCategory === ''">
+      <section class="popular-section">
         <h2 class="popular-heading">
           <i class="fas fa-fire icon-style"></i> Popular in Tashkent
         </h2>
         <div class="category-cards">
-          <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="All Doctors" @fetch-category="fetchCategoryData"/>
-          <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="All Clinics" @fetch-category="fetchCategoryData"/>
-          <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="All Services" @fetch-category="fetchCategoryData"/>
-          <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="'diagnostics'" buttonText="All Diagnostics" @fetch-category="fetchCategoryData"/>
+          <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="All Doctors"/>
+          <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="All Clinics"/>
+          <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="All Services"/>
+          <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="'diagnostics'" buttonText="All Diagnostics"/>
         </div>
       </section>
-      
-      <DoctorsDisplayComp :data="doctorsData" v-if="activeCategory === 'doctors'" />
-      <ClinicsDisplayComp :data="clinicsData" v-if="activeCategory === 'clinics'" />
-      <ServicesDisplayComp :data="servicesData" v-if="activeCategory === 'services'" />
-      <DiagnosticsDisplayComp :data="diagnosticsData" v-if="activeCategory === 'diagnostics'" />
-
     </main>
 
     <FooterComp />
@@ -35,21 +29,13 @@ import HeaderComp from "@/components/mainPage/HeaderComp.vue";
 import CategoryCardComp from "@/components/mainPage/CategoryCardComp.vue";
 import FooterComp from "@/components/mainPage/FooterComp.vue";
 import SearchBarComp from "@/components/mainPage/SearchBarComp.vue";
-import ClinicsDisplayComp from '../listPages/ClinicsDisplayComp.vue';
-import DoctorsDisplayComp from '../listPages/DoctorsDisplayComp.vue';
-import ServicesDisplayComp from '../listPages/ServicesDisplayComp.vue';
-import DiagnosticsDisplayComp from '../listPages/DiagnosticsDisplayComp.vue';
 
 export default {
   components: {
     HeaderComp,
     SearchBarComp,
     CategoryCardComp,
-    FooterComp,
-    ClinicsDisplayComp,
-    DoctorsDisplayComp,
-    ServicesDisplayComp,
-    DiagnosticsDisplayComp
+    FooterComp
   },
   data() {
     return {
@@ -57,6 +43,7 @@ export default {
       clinicsCount : 0,
       servicesCount : 0,
       diagnosticsCount : 0,
+      
       doctorItems: [],
       clinicItems: [],
       serviceItems: [],
@@ -67,8 +54,6 @@ export default {
       clinicsData: null,
       servicesData: null,
       diagnosticsData: null,
-      displayData: null, // This could be the data passed to a generic display component
-      activeCategory: '', // This could control which category of data is currently being displayed
     };
   },
   created(){
@@ -92,6 +77,10 @@ export default {
         this.doctorItems = doctorResponse.data;
         this.clinicItems = clinicResponse.data;
         this.serviceItems = serviceResponse.data;
+        console.log(this.doctorItems );
+        console.log(this.clinicItems );
+        console.log(this.serviceItems );
+
         // this.diagnosticItems = diagnosticResponse.data;
 
         this.doctorsCount = doctorsCount.data;
@@ -102,33 +91,7 @@ export default {
         console.error('There was an error fetching the data:', error);
         // Handle the error as you see fit (e.g., user notification, logging, etc.)
       }
-    },
-
-    async fetchCategoryData(categoryType){
-      try{
-        const url = 'http://localhost:8081/api/v1/' + categoryType;
-        console.log("request is sending to endpoint: " + url);
-        const response = await axios.get(url);
-        console
-        this.processFetchedData(response.data, categoryType);
-      }catch(error){
-        console.error(`Error fetching ${categoryType} data:`, error);
-      }
-    },
-
-    async processFetchedData(fetchedData, categoryType){
-      console.log(fetchedData);
-      if (categoryType === 'doctors') {
-        this.doctorsData = fetchedData;
-      } else if (categoryType === 'clinics') {
-        this.clinicsData = fetchedData;
-      } else if (categoryType === 'services') {
-        this.servicesData = fetchedData;
-      } else if (categoryType === 'diagnostics') {
-        this.diagnosticsData = fetchedData;
-      }
-      this.activeCategory = categoryType;
-    }
+    }  
   }
 };
 </script>

@@ -14,7 +14,7 @@
           <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="All Doctors"/>
           <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="All Clinics"/>
           <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="All Services"/>
-          <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="'diagnostics'" buttonText="All Diagnostics"/>
+          <!-- <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="'diagnostics'" buttonText="All Diagnostics"/> -->
         </div>
       </section>
     </main>
@@ -43,7 +43,7 @@ export default {
       clinicsCount : 0,
       servicesCount : 0,
       diagnosticsCount : 0,
-      
+
       doctorItems: [],
       clinicItems: [],
       serviceItems: [],

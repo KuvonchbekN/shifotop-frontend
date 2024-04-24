@@ -33,7 +33,8 @@ export default {
 
   methods: {
     goToCategory() {
-      this.$router.push({ name: 'categoryView', params: { category: this.type } });
+      console.log(this.type);
+      this.$router.push({ name: this.type });
     }
   }
 }; 

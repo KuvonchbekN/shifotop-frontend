@@ -9,9 +9,9 @@
         <p class="doctor-specialty">{{ doctor.specialities.map(speciality => speciality.name).join(', ') }}</p>
         <div class="doctor-experience">Experience: {{ doctor.yearOfExperience }} years</div>
         <div class="doctor-rating">
-        <StarRating :rating="doctor.rating" /> <!-- Use the StarRating component -->
-        <span class="reviews">{{ doctor.reviews.length }} reviews</span>
-      </div>
+          <StarRating :rating="doctor.rating" /> <!-- Use the StarRating component -->
+          <span class="reviews">{{ doctor.reviews.length }} reviews</span>
+        </div>
         <div class="doctor-contact">
           <p class="doctor-phone">{{ doctor.phoneNumber }}</p>
           <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="details-button">
@@ -109,7 +109,8 @@ export default {
 }
 
 .doctor-rating .stars {
-  color: #ffd700; /* Gold color for stars */
+  color: #ffd700;
+  /* Gold color for stars */
 }
 
 .doctor-rating .reviews {

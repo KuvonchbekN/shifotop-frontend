@@ -1,12 +1,12 @@
 <template>
   <div class="search-bar">
     <input
-        type="text"
-        placeholder="Doctors, clinics, services"
-        v-model="searchQuery"
-        @keyup.enter="search"
+      type="text"
+      placeholder="Search for doctors, clinics, services"
+      v-model="searchQuery"
+      @keyup.enter="performSearch"
     />
-    <button @click="search">Search</button>
+    <button @click="performSearch">Search</button>
   </div>
 </template>
 
@@ -14,17 +14,22 @@
 export default {
   data() {
     return {
-      searchQuery: ''
+      searchQuery: '',
     };
   },
   methods: {
-    search() {
-      // Implement your search logic here
-      // You can access the searchQuery using this.searchQuery
-      // For example, you can perform an API request with the search query
-      alert(`Search for: ${this.searchQuery}`);
-    }
-  }
+    performSearch() {
+      if (!this.searchQuery) {
+        alert("You cannot search for empty");
+        return;
+      }
+
+      if (this.searchQuery.trim()) {
+        // Use Vue Router to navigate to the search results route
+        this.$router.push({ name: 'searchResults', query: { q: this.searchQuery } });
+      }
+    },
+  },
 };
 </script>
 

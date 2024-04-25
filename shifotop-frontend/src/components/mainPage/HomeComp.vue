@@ -4,7 +4,7 @@
 
     <main class="main-content">
       <p class="description">Website for reviews of Doctors No.1 in Uzbekistan</p>
-      <SearchBarComp />
+      <SearchBarComp @search="handleSearch"/>
 
       <section class="popular-section">
         <h2 class="popular-heading">
@@ -28,7 +28,7 @@ import axios from 'axios'; // Import axios to make requests to the backend
 import HeaderComp from "@/components/mainPage/HeaderComp.vue";
 import CategoryCardComp from "@/components/mainPage/CategoryCardComp.vue";
 import FooterComp from "@/components/mainPage/FooterComp.vue";
-import SearchBarComp from "@/components/mainPage/SearchBarComp.vue";
+import SearchBarComp from "@/components/search/SearchBarComp.vue";
 
 export default {
   components: {
@@ -90,6 +90,25 @@ export default {
       } catch (error) {
         console.error('There was an error fetching the data:', error);
         // Handle the error as you see fit (e.g., user notification, logging, etc.)
+      }
+    },
+    handleSearch(searchTerm) {
+      alert("Searching for: " + searchTerm);
+      this.searchItems(searchTerm);
+    },
+    async searchItems(searchTerm) {
+      try {
+        // Replace with the correct API endpoint
+        const response = await axios.get(`http://localhost:8081/api/v1/search?term=${encodeURIComponent(searchTerm)}`);
+        console.log("request sent to search ");
+        this.doctorItems = response.data.doctors;
+        this.clinicItems = response.data.clinics;
+        this.serviceItems = response.data.services;
+        console.log(this.doctorItems);
+      } catch (error) {
+        console.error('Error during search:', error);
+        alert("error occurred!");
+        // Handle errors such as showing a notification to the user
       }
     }  
   }

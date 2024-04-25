@@ -14,7 +14,7 @@
         </div>
         <div class="doctor-rating" v-if="doctorDetails.rating || doctorDetails.reviews">
           <div v-if="doctorDetails.rating" class="rating">
-          <StarRating :rating="doctorDetails.rating" />
+            <StarRating :rating="doctorDetails.rating" />
           </div>
           <div v-if="doctorDetails.reviews" class="reviews">
             <span>{{ doctorDetails.reviews.length }} reviews</span>
@@ -25,7 +25,8 @@
         </div>
       </div>
       <div class="detailed-doctor-body">
-        <p class="detailed-doctor-experience" v-if="doctorDetails.experience">Experience: {{ doctorDetails.experience }} years</p>
+        <p class="detailed-doctor-experience" v-if="doctorDetails.experience">Experience: {{ doctorDetails.experience }}
+          years</p>
         <p class="detailed-doctor-description" v-if="doctorDetails.bio">Bio: {{ doctorDetails.bio }}</p>
         <div class="detailed-doctor-contact" v-if="doctorDetails.phoneNumber || doctorDetails.email">
           <p class="detailed-doctor-phone" v-if="doctorDetails.phoneNumber">Phone: {{ doctorDetails.phoneNumber }}</p>
@@ -38,15 +39,19 @@
         <h2 class="clinics-title">Associated Clinics</h2>
         <div class="clinics-list">
           <div v-for="clinic in doctorDetails.clinics" :key="clinic.id" class="clinic-card">
-            <div class="clinic-image-wrapper">
-              <img class="clinic-image" :src="clinic.image || defaultClinicImage" alt="Clinic" />
-            </div>
-            <div class="clinic-details">
-              <h3 class="clinic-name">{{ clinic.name }}</h3>
-              <p class="clinic-address">{{ clinic.address }}</p>
-              <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-              <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
-            </div>
+              <div class="clinic-image-wrapper">
+                <img class="clinic-image" :src="clinic.image || defaultClinicImage" alt="Clinic" />
+              </div>
+              <div class="clinic-details">
+                <h3 class="clinic-name">{{ clinic.name }}</h3>
+                <p class="clinic-address">{{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{
+                  clinic.address.addressName }}</p>
+                <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
+                <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
+              </div>
+              <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
+                View Profile
+              </router-link>
           </div>
         </div>
       </div>
@@ -57,14 +62,14 @@
       <ul class="reviews-list">
         <li v-for="review in doctorDetails.reviews" :key="review.id" class="review-item">
           <div class="review-content">{{ review.content }}</div>
-          <div class="review-date">{{review.reviewTime }}</div>
+          <div class="review-date">{{ review.reviewTime }}</div>
         </li>
       </ul>
     </div>
   </div>
 
-  
-  
+
+
 </template>
 
 <script>
@@ -92,19 +97,19 @@ export default {
   methods: {
     fetchDoctorDetails() {
       axios.get(`http://localhost:8081/api/v1/doctors/${this.$route.params.doctorId}`)
-      .then(response => {
-        // Normalize the data in case of discrepancies
-        const normalizedData = {
-          ...response.data,
-          specialities: Array.isArray(response.data.specialities) ? response.data.specialities : [],
-          reviews: Array.isArray(response.data.reviews) ? response.data.reviews : []
-        };
-        this.doctorDetails = normalizedData;
-        console.log(this.doctorDetails);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the doctor details:', error);
-      });
+        .then(response => {
+          // Normalize the data in case of discrepancies
+          const normalizedData = {
+            ...response.data,
+            specialities: Array.isArray(response.data.specialities) ? response.data.specialities : [],
+            reviews: Array.isArray(response.data.reviews) ? response.data.reviews : []
+          };
+          this.doctorDetails = normalizedData;
+          console.log(this.doctorDetails);
+        })
+        .catch(error => {
+          console.error('There was an error fetching the doctor details:', error);
+        });
     },
 
     formatReviewDate(dateString) {
@@ -181,11 +186,14 @@ export default {
   line-height: 1.6;
 }
 
-.detailed-doctor-experience, .detailed-doctor-description, .detailed-doctor-contact {
+.detailed-doctor-experience,
+.detailed-doctor-description,
+.detailed-doctor-contact {
   margin-bottom: 1rem;
 }
 
-.detailed-doctor-phone, .detailed-doctor-email {
+.detailed-doctor-phone,
+.detailed-doctor-email {
   font-weight: bold;
 }
 
@@ -204,27 +212,19 @@ export default {
   background-color: #0056b3;
 }
 
-.rating, .reviews, .doctor-price {
+.rating,
+.reviews,
+.doctor-price {
   text-align: center;
   margin: 0.5rem 0;
-}
-
-/* Additional styles for the rating stars */
-/* You will need to add your custom styling or component for the stars */
-.rating span {
-  /* Your styles for the rating */
-}
-
-.reviews span {
-  /* Your styles for the review count */
 }
 
 .doctor-price span {
   /* Your styles for the price */
   font-weight: bold;
-  color: #e53935; /* Example color for the price */
+  color: #e53935;
+  /* Example color for the price */
 }
-
 
 .reviews-container {
   margin-top: 2rem;
@@ -245,10 +245,6 @@ export default {
   border-bottom: 1px solid #eee;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-}
-
-.review-rating {
-  /* Style for the rating section of the review */
 }
 
 .review-content {
@@ -309,10 +305,14 @@ export default {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: cover; /* Ensures the aspect ratio is maintained and the image fills the area */
-  border-radius: 8px; /* Adjust as needed, softens edges */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow to help blend edges */
+  object-fit: cover;
+  /* Ensures the aspect ratio is maintained and the image fills the area */
+  border-radius: 8px;
+  /* Adjust as needed, softens edges */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  /* Optional: Adds a shadow to help blend edges */
 }
+
 .clinic-image-wrapper:hover .clinic-image {
   transform: scale(1.1);
 }
@@ -326,12 +326,31 @@ export default {
   font-size: 1.2rem;
   margin-bottom: 5px;
   color: #34495e;
+  text-decoration: none
 }
 
-.clinic-address, .clinic-phone, .clinic-supervisor {
+.clinic-address,
+.clinic-phone,
+.clinic-supervisor {
   font-size: 0.9rem;
   margin-bottom: 5px;
   color: #7f8c8d;
+  text-decoration:none !important;
+}
+
+.details-button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #0056b3;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #003f8a;
 }
 
 @media only screen and (max-width: 600px) {

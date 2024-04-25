@@ -12,7 +12,7 @@
                         <span class="reviews">{{ doctor.reviews.length }} reviews</span>
                     </div>
                     <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="view-profile">
-                        View Profile
+                        View Details
                     </router-link>
                 </li>
             </ul>

@@ -15,7 +15,7 @@
         <div class="doctor-contact">
           <p class="doctor-phone">{{ doctor.phoneNumber }}</p>
           <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="details-button">
-            View Profile
+            View Details
           </router-link>
         </div>
       </div>

@@ -44,13 +44,14 @@
               </div>
               <div class="clinic-details">
                 <h3 class="clinic-name">{{ clinic.name }}</h3>
+                <StarRating :rating="clinic.rating" /> 
                 <p class="clinic-address">{{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{
                   clinic.address.addressName }}</p>
                 <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
                 <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
               </div>
               <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-                View Profile
+                View Details
               </router-link>
           </div>
         </div>

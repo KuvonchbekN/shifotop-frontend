@@ -10,7 +10,8 @@
           <h2 class="clinic-official-name">{{ clinicDetails.officialName }}</h2>
           <p class="detailed-clinic-address">
             <!-- Use v-if/v-else to handle the existence of the address object -->
-            <span v-if="clinicDetails.address">{{ clinicDetails.address.regionName }}, {{ clinicDetails.address.cityName }}, {{ clinicDetails.address.addressName }}</span>
+            <span v-if="clinicDetails.address">{{ clinicDetails.address.regionName }}, {{ clinicDetails.address.cityName
+              }}, {{ clinicDetails.address.addressName }}</span>
             <span v-else>Address not available</span>
           </p>
           <!-- Rating stars -->
@@ -36,11 +37,18 @@
       </div>
       <div class="clinic-doctors">
         <h3>Doctors at this Clinic:</h3>
-        <ul>
-          <li v-for="doctor in clinicDetails.doctors" :key="doctor.id">
-            {{ doctor.firstname }} {{ doctor.lastname }} - {{ doctor.experience }} years experience
-          </li>
-        </ul>
+        <div class="doctor-cards-container">
+          <div class="doctor-card" v-for="doctor in clinicDetails.doctors" :key="doctor.id">
+            <div class="doctor-info">
+              <h4 class="doctor-name">{{ doctor.firstname }} {{ doctor.lastname }}</h4>
+              <p class="doctor-experience">{{ doctor.experience }} years experience</p>
+              <StarRating :rating="doctor.rating" />
+            </div>
+            <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="view-doctor-button">
+              View Details
+            </router-link>
+          </div>
+        </div>
       </div>
       <div class="clinic-reviews">
         <h3>Reviews:</h3>
@@ -99,8 +107,6 @@ export default {
     }
   }
 };
-
-
 </script>
 
 <style scoped>
@@ -250,6 +256,71 @@ export default {
   background-color: #0056b3;
 }
 
+.clinic-doctors {
+  margin-top: 1rem;
+}
+
+.clinic-doctors h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.doctor-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.doctor-card {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: calc(50% - 1rem); /* Two items per row */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.doctor-info {
+  margin-bottom: 1rem;
+}
+
+.doctor-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.doctor-experience {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.view-doctor-button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+  align-self: center;
+}
+
+.view-doctor-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .doctor-card {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
   .detailed-clinic-info {
     grid-template-columns: 1fr;
@@ -275,10 +346,10 @@ export default {
   }
 
   .clinic-rating {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-}
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }
 }
 </style>

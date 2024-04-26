@@ -39,26 +39,44 @@
         <h2 class="clinics-title">Associated Clinics</h2>
         <div class="clinics-list">
           <div v-for="clinic in doctorDetails.clinics" :key="clinic.id" class="clinic-card">
-              <div class="clinic-image-wrapper">
-                <img class="clinic-image" :src="clinic.image || defaultClinicImage" alt="Clinic" />
-              </div>
-              <div class="clinic-details">
-                <h3 class="clinic-name">{{ clinic.name }}</h3>
-                <StarRating :rating="clinic.rating" /> 
-                <p class="clinic-address">{{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{
-                  clinic.address.addressName }}</p>
-                <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-                <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
-              </div>
-              <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-                View Details
-              </router-link>
+            <div class="clinic-image-wrapper">
+              <img class="clinic-image" :src="clinic.image || defaultClinicImage" alt="Clinic" />
+            </div>
+            <div class="clinic-details">
+              <h3 class="clinic-name">{{ clinic.name }}</h3>
+              <StarRating :rating="clinic.rating" />
+              <p class="clinic-address">{{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{
+                clinic.address.addressName }}</p>
+              <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
+              <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
+            </div>
+            <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
+              View Details
+            </router-link>
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="reviews-container" v-if="doctorDetails.reviews && doctorDetails.reviews.length">
+      <!-- adding review for this specific clinic feature -->
+      <div class="review-form">
+        <h3>Add a review for this doctor:</h3>
+        <textarea v-model="newReview.content" placeholder="Write your review here..."></textarea>
+        <div class="submit-rating">
+          <label for="rating">Your Rating:</label>
+          <select v-model="newReview.rating" id="rating">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+        </div>
+        <button @click="submitReview">Submit Review</button>
+      </div>
+
       <h3 class="reviews-title">Reviews:</h3>
       <ul class="reviews-list">
         <li v-for="review in doctorDetails.reviews" :key="review.id" class="review-item">
@@ -89,7 +107,11 @@ export default {
     return {
       doctorDetails: {},
       defaultImage,
-      defaultClinicImage
+      defaultClinicImage,
+      newReview: {
+        rating: 5, // Default to 5 stars
+        content: '',
+      },
     };
   },
   created() {
@@ -118,6 +140,31 @@ export default {
       // or the Intl.DateTimeFormat API for more complex formatting.
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+    },
+
+    submitReview() {
+      console.log(this.newReview);
+      if(this.newReview.content.trim().length === 0){
+        alert("You cannot submit empty form");
+        return;
+      }
+      const doctorId = this.$route.params.doctorId;
+      const reviewData = {
+        ...this.newReview,
+        doctorId: doctorId,
+      };
+      axios.post(`http://localhost:8081/api/v1/doctors/${doctorId}/reviews`, reviewData)
+        .then(response => {
+          // Add the new review to the list of reviews without refreshing the page
+          this.doctorDetails.reviews.push(response.data);
+          // Clear the form
+          this.newReview.content = '';
+          this.newReview.rating = 5;
+          location.reload();
+        })
+        .catch(error => {
+          console.error('There was an error posting the review:', error);
+        });
     }
   }
 };
@@ -336,7 +383,7 @@ export default {
   font-size: 0.9rem;
   margin-bottom: 5px;
   color: #7f8c8d;
-  text-decoration:none !important;
+  text-decoration: none !important;
 }
 
 .details-button {
@@ -352,6 +399,44 @@ export default {
 
 .details-button:hover {
   background-color: #003f8a;
+}
+
+.review-form {
+  margin-top: 1rem;
+}
+
+.review-form h3 {
+  margin-bottom: 0.5rem;
+}
+
+.review-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  height: 100px; /* You can adjust the height */
+}
+
+.submit-rating {
+  margin-bottom: 0.5rem;
+}
+
+.submit-rating label {
+  margin-right: 0.5rem;
+}
+
+.review-form button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #0056b3;
 }
 
 @media only screen and (max-width: 600px) {

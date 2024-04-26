@@ -63,6 +63,23 @@
           </li>
         </ul>
       </div>
+
+      <!-- adding review for this specific clinic feature -->
+      <div class="review-form">
+        <h3>Add a Review:</h3>
+        <textarea v-model="newReview.content" placeholder="Write your review here..."></textarea>
+        <div class="submit-rating">
+          <label for="rating">Your Rating:</label>
+          <select v-model="newReview.rating" id="rating">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+        </div>
+        <button @click="submitReview">Submit Review</button>
+      </div>
     </div>
     <router-link to="/clinics" class="back-button">← Back to Clinics</router-link>
   </div>
@@ -82,8 +99,12 @@ export default {
   data() {
     return {
       clinicDetails: {},
-      defaultClinicImage
-    };
+      defaultClinicImage,
+      newReview: {
+        rating: 5, // Default to 5 stars
+        content: '',
+      },
+    }
   },
   created() {
     this.fetchClinicDetails();
@@ -104,9 +125,34 @@ export default {
     formatReviewDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-    }
+    },
+    // adding the review method
+    submitReview() {
+      if(this.newReview.content.trim().length === 0){
+        alert("You cannot submit empty form");
+        return;
+      }
+
+      const clinicId = this.$route.params.clinicId;
+      const reviewData = {
+        ...this.newReview,
+        clinicId: clinicId,
+      };
+      axios.post(`http://localhost:8081/api/v1/clinics/${clinicId}/reviews`, reviewData)
+        .then(response => {
+          // Add the new review to the list of reviews without refreshing the page
+          this.clinicDetails.reviews.push(response.data);
+          // Clear the form
+          this.newReview.content = '';
+          this.newReview.rating = 5;
+          location.reload();
+        })
+        .catch(error => {
+          console.error('There was an error posting the review:', error);
+        });
+      }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -315,13 +361,50 @@ export default {
   background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-  .doctor-card {
-    width: 100%; /* Full width on smaller screens */
-  }
+.review-form {
+  margin-top: 1rem;
+}
+
+.review-form h3 {
+  margin-bottom: 0.5rem;
+}
+
+.review-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  height: 100px; /* You can adjust the height */
+}
+
+.submit-rating {
+  margin-bottom: 0.5rem;
+}
+
+.submit-rating label {
+  margin-right: 0.5rem;
+}
+
+.review-form button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
+
+  .doctor-card {
+    width: 100%; /* Full width on smaller screens */
+  }
+
   .detailed-clinic-info {
     grid-template-columns: 1fr;
     /* Stack the sections on top of each other on smaller screens */

@@ -2,7 +2,7 @@
   <div class="search-bar">
     <input
       type="text"
-      placeholder="Search for doctors, clinics"
+      placeholder="Search for doctors, clinics, services"
       v-model="searchQuery"
       @keyup.enter="performSearch"
     />

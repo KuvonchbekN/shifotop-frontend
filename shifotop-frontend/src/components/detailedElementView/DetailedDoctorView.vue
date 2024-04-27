@@ -86,9 +86,6 @@
       </ul>
     </div>
   </div>
-
-
-
 </template>
 
 <script>
@@ -122,12 +119,11 @@ export default {
       axios.get(`http://localhost:8081/api/v1/doctors/${this.$route.params.doctorId}`)
         .then(response => {
           // Normalize the data in case of discrepancies
-          const normalizedData = {
+          this.doctorDetails = {
             ...response.data,
             specialities: Array.isArray(response.data.specialities) ? response.data.specialities : [],
             reviews: Array.isArray(response.data.reviews) ? response.data.reviews : []
           };
-          this.doctorDetails = normalizedData;
           console.log(this.doctorDetails);
         })
         .catch(error => {

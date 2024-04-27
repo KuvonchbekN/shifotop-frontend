@@ -6,8 +6,8 @@
       </div>
       <div class="doctor-details">
         <h2 class="doctor-name">{{ doctor.firstname }} {{ doctor.lastname }}</h2>
-        <p class="doctor-specialty">{{ doctor.specialities.map(speciality => speciality.name).join(', ') }}</p>
-        <div class="doctor-experience">Experience: {{ doctor.yearOfExperience }} years</div>
+<!--        <p class="doctor-specialty">{{ doctor.specialities.map(speciality => speciality.name).join(', ') }}</p>-->
+        <div class="doctor-experience">Experience: {{ doctor.experience }} years</div>
         <div class="doctor-rating">
           <StarRating :rating="doctor.rating" /> <!-- Use the StarRating component -->
           <span class="reviews">{{ doctor.reviews.length }} reviews</span>
@@ -45,7 +45,7 @@ export default {
     async fetchDoctors() {
       console.log("fetching list of doctors");
       try {
-        const response = await axios.get('http://localhost:8081/api/v1/doctors');
+        const response = await axios.get('http://localhost:8081/api/v1/doctors'); //todo replace http... with API_BASE constant
         this.doctors = response.data;
         console.log(response.data);
       } catch (error) {

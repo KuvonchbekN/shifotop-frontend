@@ -3,6 +3,7 @@
     <div class="footer-content">
       <div class="footer-section">
         <h4>ShifoTop</h4>
+        <!--   todo footer elements not implemented yet-->
         <ul class="footer-links">
           <li>About company</li>
           <li>About the project</li>

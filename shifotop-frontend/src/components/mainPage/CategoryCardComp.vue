@@ -10,7 +10,7 @@
     <ul class="list">
       <li v-for="(subcat, index) in items" :key="index">  <!-- subcat==subcategory in doctor,clinic card -->
         <router-link :to="{ name: 'subcat', params: { type: type, itemName: subcat.name } }">
-          {{ subcat.name }} <span class="value">{{ subcat.count }}</span>
+          <a @click="goToSubCategory(subcat.name)">{{ subcat.name }} <span class="value">{{ subcat.count }}</span></a>
         </router-link>
       </li>
     </ul>
@@ -35,6 +35,10 @@ export default {
     goToCategory() {
       console.log(this.type);
       this.$router.push({ name: this.type });
+    },
+    goToSubCategory(itemName) {
+      // You might want to encode the itemName if it could contain special characters
+      this.$router.push({ name: 'subcat', params: { type: this.type, itemName } });
     }
   }
 }; 

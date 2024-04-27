@@ -24,7 +24,7 @@
         <div class="clinic-contact-info">
           <h3>Contact</h3>
           <p class="clinic-phone">Phone: {{ clinicDetails.phoneNumber }}</p>
-          <p class="clinic-supervisor">Supervisor: {{ clinicDetails.supervisorName }}</p>
+          <p class="clinic-supervisor">Contact Person: {{ clinicDetails.supervisorName }}</p>
         </div>
         <div class="clinic-services">
           <h3>Services Offered</h3>
@@ -89,7 +89,6 @@
 import axios from 'axios';
 import defaultClinicImage from '@/assets/default-clinic-image.png';
 import StarRating from '@/components/StarRating.vue';
-
 
 export default {
   name: 'DetailedClinicView',

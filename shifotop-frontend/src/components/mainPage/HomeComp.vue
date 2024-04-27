@@ -14,7 +14,6 @@
           <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="All Doctors"/>
           <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="All Clinics"/>
           <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="All Services"/>
-          <!-- <CategoryCardComp title="Diagnostics" :count=0 :items="diagnosticItems" :type="'diagnostics'" buttonText="All Diagnostics"/> -->
         </div>
       </section>
     </main>
@@ -65,13 +64,10 @@ export default {
         const doctorsCount  = await axios.get('http://localhost:8081/api/v1/doctors/doctors-count');
         const clinicsCount  = await axios.get('http://localhost:8081/api/v1/clinics/clinics-count');
         const servicesCount = await axios.get('http://localhost:8081/api/v1/services/count');
-        // const diagnosticsCount = await axios.get(''); this feature is not implemented yet in backend
-
 
         const doctorResponse  = await axios.get('http://localhost:8081/api/v1/doctors/speciality-count');
         const clinicResponse  = await axios.get('http://localhost:8081/api/v1/clinics/speciality-count');
         const serviceResponse = await axios.get('http://localhost:8081/api/v1/clinics/by-services');
-        // const diagnosticResponse = await axios.get('/api/diagnostics');
 
         // Assuming the API returns an array of items with 'name' and 'count' properties
         this.doctorItems = doctorResponse.data;
@@ -81,12 +77,9 @@ export default {
         console.log(this.clinicItems );
         console.log(this.serviceItems );
 
-        // this.diagnosticItems = diagnosticResponse.data;
-
         this.doctorsCount = doctorsCount.data;
         this.clinicsCount = clinicsCount.data;
         this.servicesCount = servicesCount.data;
-        // this.diagnosticsCount = diagnosticsCount;
       } catch (error) {
         console.error('There was an error fetching the data:', error);
         // Handle the error as you see fit (e.g., user notification, logging, etc.)
@@ -145,7 +138,6 @@ export default {
 .popular-heading i{
   color: #ed2227;
 }
-
 
 .category-cards {
   display: grid;

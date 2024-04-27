@@ -2,7 +2,7 @@
   <div class="search-bar">
     <input
       type="text"
-      placeholder="Search for doctors, clinics, services"
+      placeholder="Search for doctors, clinics"
       v-model="searchQuery"
       @keyup.enter="performSearch"
     />
@@ -55,6 +55,4 @@ button {
   cursor: pointer;
   margin-left: 0.5rem;
 }
-
-/* Add responsive styles as needed */
 </style>

@@ -26,7 +26,6 @@
 <script>
 import axios from 'axios';
 import defaultImage from '@/assets/default-doctor.png'; // Assume you have a default image for doctors
-// Import your star-rating component if you have one
 import StarRating from '@/components/StarRating.vue';
 
 export default {
@@ -106,11 +105,6 @@ export default {
 .doctor-experience {
   font-size: 0.9rem;
   color: #424242;
-}
-
-.doctor-rating .stars {
-  color: #ffd700;
-  /* Gold color for stars */
 }
 
 .doctor-rating .reviews {

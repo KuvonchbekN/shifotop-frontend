@@ -121,11 +121,6 @@ export default {
   background-color: #003f8a;
 }
 
-/* Styles for the star rating component */
-.star-rating {
-  margin: 1rem auto;
-}
-
 @media only screen and (max-width: 600px) {
   .clinic-container {
     padding: 1rem;

@@ -55,12 +55,6 @@ i{
   margin-right: 5px; /* Space between icon and text */
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
 .search-container input {
   padding: 10px;
   border: 1px solid #ddd;

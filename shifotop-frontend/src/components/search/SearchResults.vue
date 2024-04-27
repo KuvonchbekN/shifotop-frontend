@@ -25,7 +25,7 @@
                     <div class="clinic-details">
                         <h3 class="clinic-name">{{ clinic.name }}</h3>
                         <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-                        <p class="clinic-supervisor">Supervisor: {{ clinic.supervisorName }}</p>
+                        <p class="clinic-supervisor">Contact Person: {{ clinic.supervisorName }}</p>
                         <StarRating :rating="clinic.rating" />
                         <span class="reviews">{{ clinic.reviews.length }} reviews</span>
                     </div>
@@ -46,7 +46,7 @@
 
 <script>
 import axios from 'axios';
-import StarRating from '../StarRating.vue';
+import StarRating from "@/components/StarRating.vue";
 
 export default {
     data() {
@@ -91,7 +91,6 @@ export default {
     }
 }
 </script>
-
 
 <style scoped>
 .search-results {
@@ -169,44 +168,6 @@ export default {
     }
 }
 
-/* StarRating component styles if needed */
-.star-rating {
-    color: #ffd700;
-    /* Gold color for stars */
-}
-
-.clinic-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    /* Spacing between cards */
-    justify-content: flex-start;
-    /* Align cards to the start of the container */
-}
-
-.clinic-card {
-    flex: 1;
-    /* Allows the card to grow */
-    min-width: calc(33.333% - 1rem);
-    /* Three items per row, minus the gap */
-    max-width: calc(33.333% - 1rem);
-    /* Same as min-width to prevent growth beyond 33.333% */
-    min-height: 200px;
-    /* Minimum height for all cards */
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    box-sizing: border-box;
-    /* Include padding and border in the width and height */
-    display: flex;
-    /* Makes the card a flex container */
-    flex-direction: column;
-    /* Stack items vertically */
-    justify-content: space-between;
-    /* Distribute space evenly */
-}
-
 .clinic-details {
     /* Flex item, it will grow to take the available height */
     flex: 1;
@@ -217,13 +178,5 @@ export default {
     /* Center button in the card */
     margin-top: auto;
     /* Push the button to the bottom */
-}
-
-@media (max-width: 768px) {
-    .clinic-card {
-        /* On smaller screens, let the card take full width minus the gap */
-        min-width: calc(100% - 1rem);
-        max-width: calc(100% - 1rem);
-    }
 }
 </style>

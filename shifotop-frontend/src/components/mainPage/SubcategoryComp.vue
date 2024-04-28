@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="subcategory-view">
     <h1>{{ subcategoryName }}</h1>
     <ul v-if="type === 'doctors'">
@@ -59,6 +60,7 @@
       </div>
     </ul>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
@@ -66,10 +68,14 @@ import axios from 'axios';
 import StarRating from '@/components/StarRating.vue'; // Make sure this is the correct path to your StarRating component
 import defaultDoctorImage from '@/assets/default-doctor.png'
 import defaultClinicImage from '@/assets/default-clinic-image.png'
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   name: 'SubcategoryComp',
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating,
   },
   props: {

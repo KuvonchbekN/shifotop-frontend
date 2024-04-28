@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="detailed-clinic-container">
     <div class="detailed-clinic-card">
       <div class="detailed-clinic-header">
@@ -83,16 +84,21 @@
     </div>
     <router-link to="/clinics" class="back-button">← Barcha shifoxonalar</router-link>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
 import defaultClinicImage from '@/assets/default-clinic-image.png';
 import StarRating from '@/components/StarRating.vue';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   name: 'DetailedClinicView',
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   data() {

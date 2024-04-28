@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="service-container">
     <div class="service-card" v-for="service in services" :key="service.id">
       <div class="service-details">
@@ -10,13 +11,17 @@
       </div>
     </div>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   name: 'ServiceComp',
+  components: {FooterComp, HeaderComp},
   data() {
     return {
       services: [],

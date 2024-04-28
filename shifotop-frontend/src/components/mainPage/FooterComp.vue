@@ -4,44 +4,44 @@
       <div class="footer-section">
         <h4>ShifoTop</h4>
         <ul class="footer-links">
-          <li><router-link to="/about-company">About company</router-link></li>
-          <li><router-link to="/about-project">About the project</router-link></li>
-          <li><router-link to="/press">They talk about us</router-link></li>
-          <li><router-link to="/performances">Performances</router-link></li>
-          <li><router-link to="/review-battle">Battle for reviews</router-link></li>
-          <li><router-link to="/vacancies">Vacancies</router-link></li>
-          <li><router-link to="/social-media">Social network</router-link></li>
-          <li><router-link to="/contact">Contacts</router-link></li>
+          <li><router-link to="/about-company">Kompaniya haqida</router-link></li>
+          <li><router-link to="/about-project">Loyiha haqida</router-link></li>
+          <li><router-link to="/press">Biz haqimizda</router-link></li>
+          <li><router-link to="/performances">Natijalarimiz</router-link></li>
+          <li><router-link to="/review-battle">Izohlar jangi</router-link></li>
+          <li><router-link to="/vacancies">Vakansiyalar</router-link></li>
+          <li><router-link to="/social-media">Ijtimoiy tarmoq</router-link></li>
+          <li><router-link to="/contact">Aloqa</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Reference</h4>
         <ul class="footer-links">
-          <li><router-link to="/help">Help</router-link></li>
-          <li><router-link to="/patient-info">To the patient</router-link></li>
-          <li><router-link to="/clinic-info">Clinic</router-link></li>
+          <li><router-link to="/help">Yordam</router-link></li>
+          <li><router-link to="/patient-info">Bemorga</router-link></li>
+          <li><router-link to="/clinic-info">Shifoxona</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Site Map</h4>
         <ul class="footer-links">
-          <li><router-link to="/cities">Cities</router-link></li>
-          <li><router-link to="/regions">Regions</router-link></li>
-          <li><router-link to="/doctors">Doctors</router-link></li>
-          <li><router-link to="/clinics">Clinics</router-link></li>
-          <li><router-link to="/services">Services</router-link></li>
+          <li><router-link to="/cities">Shaharlar</router-link></li>
+          <li><router-link to="/regions">Viloyatlar</router-link></li>
+          <li><router-link to="/doctors">Shifokorlar</router-link></li>
+          <li><router-link to="/clinics">Shifoxonalar</router-link></li>
+          <li><router-link to="/services">Xizmatlar</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Terms of Use</h4>
         <ul class="footer-links">
-          <li><router-link to="/terms">Terms of Use</router-link></li>
-          <li><router-link to="/press">They talk about us</router-link></li>
-          <li><router-link to="/performances">Performances</router-link></li>
-          <li><router-link to="/review-battle">Battle for reviews</router-link></li>
-          <li><router-link to="/vacancies">Vacancies</router-link></li>
-          <li><router-link to="/social-media">Social network</router-link></li>
-          <li><router-link to="/contact">Contacts</router-link></li>
+          <li><router-link to="/terms">Foydalanish shartlari</router-link></li>
+          <li><router-link to="/press">Biz haqimizda</router-link></li>
+          <li><router-link to="/performances">Natijalar</router-link></li>
+          <li><router-link to="/review-battle">Izohlar jangi</router-link></li>
+          <li><router-link to="/vacancies">Vakansiyalar</router-link></li>
+          <li><router-link to="/social-media">Ijtimoiy tarmoq</router-link></li>
+          <li><router-link to="/contact">Aloqa</router-link></li>
         </ul>
       </div>
     </div>

@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="doctor-container">
     <div class="doctor-card" v-for="doctor in doctors" :key="doctor.id">
       <div class="doctor-image">
@@ -21,15 +22,20 @@
       </div>
     </div>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
 import defaultImage from '@/assets/default-doctor.png'; // Assume you have a default image for doctors
 import StarRating from '@/components/StarRating.vue';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   data() {

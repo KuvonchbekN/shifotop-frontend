@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="detailed-doctor-container">
     <div class="detailed-doctor-card">
       <div class="detailed-doctor-header">
@@ -86,6 +87,7 @@
       </ul>
     </div>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
@@ -93,11 +95,15 @@ import defaultImage from '@/assets/default-doctor.png';
 import axios from 'axios';
 import StarRating from '@/components/StarRating.vue';
 import defaultClinicImage from '@/assets/default-clinic-image.png';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 
 export default {
   name: 'DetailedDoctorView',
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   data() {

@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="detailed-service-container">
     <div class="detailed-service-card">
       <h1 class="service-title">{{ serviceDetails.name }}</h1>
@@ -27,17 +28,22 @@
       </div>
     </div>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
 import StarRating from "@/components/StarRating.vue";
 import defaultClinicImage from '@/assets/default-clinic-image.png';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 
 export default {
   name: 'DetailedServiceView',
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   data() {

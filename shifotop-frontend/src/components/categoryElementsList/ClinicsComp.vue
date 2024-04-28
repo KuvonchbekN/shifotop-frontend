@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp />
   <div class="clinic-container">
     <div class="clinic-card" v-for="clinic in clinics" :key="clinic.id">
       <div class="clinic-image">
@@ -17,16 +18,21 @@
       </div>
     </div>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
 import defaultClinicImage from '@/assets/default-clinic-image.png'; // Ensure this path is correct
 import StarRating from '../StarRating.vue';
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   name: 'ClinicComp',
   components:{
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   data() {

@@ -1,4 +1,5 @@
 <template>
+  <HeaderComp/>
   <div class="search-results">
     <section v-if="searchResults.doctors.length">
       <h2>Doctors</h2>
@@ -55,11 +56,14 @@
       No results found for "{{ this.$route.query.q }}"
     </p>
   </div>
+  <FooterComp/>
 </template>
 
 <script>
 import axios from 'axios';
 import StarRating from "@/components/StarRating.vue";
+import HeaderComp from "@/components/mainPage/HeaderComp.vue";
+import FooterComp from "@/components/mainPage/FooterComp.vue";
 
 export default {
   data() {
@@ -72,6 +76,8 @@ export default {
     };
   },
   components: {
+    FooterComp,
+    HeaderComp,
     StarRating
   },
   created() {

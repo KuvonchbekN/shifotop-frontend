@@ -6,13 +6,13 @@
         <li v-for="doctor in searchResults.doctors" :key="doctor.id" class="doctor-item">
           <div class="doctor-details">
             <h3 class="doctor-name">{{ doctor.firstname }} {{ doctor.lastname }}</h3>
-            <p class="doctor-phone">Phone: {{ doctor.phoneNumber }}</p>
-            <p class="doctor-price">Price: {{ doctor.price }} soums</p>
+            <p class="doctor-phone">Telefon nomeri: {{ doctor.phoneNumber }}</p>
+            <p class="doctor-price">Narxi: {{ doctor.price }} so'm</p>
             <StarRating :rating="doctor.rating"/>
-            <span class="reviews">{{ doctor.reviews.length }} reviews</span>
+            <span class="reviews">{{ doctor.reviews.length }} izohlar</span>
           </div>
           <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="view-profile">
-            View Details
+            Malumotlarni ko'rish
           </router-link>
         </li>
       </ul>
@@ -24,13 +24,13 @@
         <li v-for="clinic in searchResults.clinics" :key="clinic.id" class="clinic-item">
           <div class="clinic-details">
             <h3 class="clinic-name">{{ clinic.name }}</h3>
-            <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-            <p class="clinic-supervisor">Contact Person: {{ clinic.supervisorName }}</p>
+            <p class="clinic-phone">Telefon raqami: {{ clinic.phoneNumber }}</p>
+            <p class="clinic-supervisor">Javobgar shaxs: {{ clinic.supervisorName }}</p>
             <StarRating :rating="clinic.rating"/>
-            <span class="reviews">{{ clinic.reviews?.length }} reviews</span>
+            <span class="reviews">{{ clinic.reviews?.length }} izohlar</span>
           </div>
           <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="view-details">
-            View Details
+            Malumotlarni ko'rish
           </router-link>
         </li>
       </ul>
@@ -42,17 +42,15 @@
         <div class="service-card" v-for="service in searchResults.services" :key="service.id">
           <div class="service-details">
             <h2 class="service-name">{{ service.name }}</h2>
-            <p class="service-cost">Cost: {{ service.cost }} soums</p>
+            <p class="service-cost">Xizmat Narxi: {{ service.cost }} so'm</p>
             <router-link :to="{ name: 'serviceDetails', params: { serviceId: service.id } }" class="details-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services Section (if needed) -->
-    <!-- No results message -->
     <p v-if="isEmptySearchResults" class="no-results">
       No results found for "{{ this.$route.query.q }}"
     </p>

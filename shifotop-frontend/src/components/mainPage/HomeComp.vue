@@ -3,17 +3,17 @@
     <HeaderComp />
 
     <main class="main-content">
-      <p class="description">Website for reviews of Doctors No.1 in Uzbekistan</p>
+      <p class="description">O‘zbekistonda No.1 shifokorlar haqidagi sayti</p>
       <SearchBarComp @search="handleSearch"/>
 
       <section class="popular-section">
         <h2 class="popular-heading">
-          <i class="fas fa-fire icon-style"></i> Popular in Tashkent
+          <i class="fas fa-fire icon-style"></i> Toshkentdagi Mashhurlari
         </h2>
         <div class="category-cards">
-          <CategoryCardComp title="Doctors" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="All Doctors"/>
-          <CategoryCardComp title="Clinics" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="All Clinics"/>
-          <CategoryCardComp title="Services" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="All Services"/>
+          <CategoryCardComp title="Shifokorlar" :count="doctorsCount" :items="doctorItems" :type="'doctors'" buttonText="Barcha shifokorlar"/>
+          <CategoryCardComp title="Shifoxonalar" :count="clinicsCount" :items="clinicItems" :type="'clinics'" buttonText="Barcha shifoxonalar"/>
+          <CategoryCardComp title="Xizmatlar" :count="servicesCount" :items="serviceItems" :type="'services'" buttonText="Barcha xizmatlar"/>
         </div>
       </section>
     </main>
@@ -41,18 +41,15 @@ export default {
       doctorsCount : 0,
       clinicsCount : 0,
       servicesCount : 0,
-      diagnosticsCount : 0,
 
       doctorItems: [],
       clinicItems: [],
       serviceItems: [],
-      diagnosticItems: [],
-      
+
       //these are for fetch all endpoints, not sure if they work correctly 
       doctorsData: null,
       clinicsData: null,
       servicesData: null,
-      diagnosticsData: null,
     };
   },
   created(){

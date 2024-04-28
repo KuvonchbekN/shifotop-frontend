@@ -2,11 +2,11 @@
   <div class="search-bar">
     <input
       type="text"
-      placeholder="Search for doctors, clinics, services"
+      placeholder="Shifokorlar, shifoxonalar, xizmatlar bo'yicha qidirish..."
       v-model="searchQuery"
       @keyup.enter="performSearch"
     />
-    <button @click="performSearch">Search</button>
+    <button @click="performSearch">Izlash</button>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   methods: {
     performSearch() {
       if (!this.searchQuery) {
-        alert("You cannot search for empty");
+        alert("Joy bo'sh bo'lishi mumkin emas.");
         return;
       }
 

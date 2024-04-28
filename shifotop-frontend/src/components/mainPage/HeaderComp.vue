@@ -2,11 +2,11 @@
   <header>
     <div class="location-selector">
       <i class="fas fa-map-marker-alt"></i>
-      Tashkent
+      Toshkent
     </div>
     <div class="logo">Shifo<span>Top</span></div>
     <div class="user-cabinet">
-      <button><i class="fa fa-user"></i>Cabinet</button>
+      <button><i class="fa fa-user"></i>Kabinet</button>
     </div>
   </header>
 </template>

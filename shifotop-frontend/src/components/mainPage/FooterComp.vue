@@ -3,55 +3,55 @@
     <div class="footer-content">
       <div class="footer-section">
         <h4>ShifoTop</h4>
-        <!--   todo footer elements not implemented yet-->
         <ul class="footer-links">
-          <li>About company</li>
-          <li>About the project</li>
-          <li>They talk about us</li>
-          <li>Performances</li>
-          <li>Battle for reviews</li>
-          <li>Vacancies</li>
-          <li>Social network</li>
-          <li>Contacts</li>
+          <li><router-link to="/about-company">About company</router-link></li>
+          <li><router-link to="/about-project">About the project</router-link></li>
+          <li><router-link to="/press">They talk about us</router-link></li>
+          <li><router-link to="/performances">Performances</router-link></li>
+          <li><router-link to="/review-battle">Battle for reviews</router-link></li>
+          <li><router-link to="/vacancies">Vacancies</router-link></li>
+          <li><router-link to="/social-media">Social network</router-link></li>
+          <li><router-link to="/contact">Contacts</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Reference</h4>
         <ul class="footer-links">
-          <li>Help</li>
-          <li>To the patient</li>
-          <li>Clinic</li>
+          <li><router-link to="/help">Help</router-link></li>
+          <li><router-link to="/patient-info">To the patient</router-link></li>
+          <li><router-link to="/clinic-info">Clinic</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Site Map</h4>
         <ul class="footer-links">
-          <li>Cities</li>
-          <li>Regions</li>
-          <li>Doctors</li>
-          <li>Clinics</li>
-          <li>Services</li>
+          <li><router-link to="/cities">Cities</router-link></li>
+          <li><router-link to="/regions">Regions</router-link></li>
+          <li><router-link to="/doctors">Doctors</router-link></li>
+          <li><router-link to="/clinics">Clinics</router-link></li>
+          <li><router-link to="/services">Services</router-link></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Terms of Use</h4>
         <ul class="footer-links">
-          <li>Terms of Use</li>
-          <li>They talk about us</li>
-          <li>Performances</li>
-          <li>Battle for reviews</li>
-          <li>Vacancies</li>
-          <li>Social network</li>
-          <li>Contacts</li>
+          <li><router-link to="/terms">Terms of Use</router-link></li>
+          <li><router-link to="/press">They talk about us</router-link></li>
+          <li><router-link to="/performances">Performances</router-link></li>
+          <li><router-link to="/review-battle">Battle for reviews</router-link></li>
+          <li><router-link to="/vacancies">Vacancies</router-link></li>
+          <li><router-link to="/social-media">Social network</router-link></li>
+          <li><router-link to="/contact">Contacts</router-link></li>
         </ul>
       </div>
     </div>
   </footer>
 </template>
 
+
 <script>
 export default {
-  // Footer script logic (if any)
+  name: 'FooterComp'
 };
 </script>
 
@@ -79,11 +79,16 @@ export default {
 
 .footer-links li {
   margin-bottom: 0.5rem;
-  cursor: pointer;
 }
 
-.footer-links li:hover {
-  text-decoration: underline;
+.footer-links li a {
+  color: white;       /* Sets the text color to white */
+  text-decoration: none; /* Removes the underline */
+}
+
+.footer-links li a:hover {
+  text-decoration: underline; /* Adds underline on hover if desired */
+  color: #f39c12; /* Changes color on hover to the theme accent color */
 }
 
 /* Media query for responsive adjustments */

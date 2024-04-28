@@ -26,7 +26,7 @@ export default {
   props: { //these are all passed from HomeComp 
     title: String,
     buttonText: String,
-    count: Number, //this is for items(doctor, clinic, service, diagnostic) count
+    count: Number, //this is for items(doctor, clinic, service) count
     items: Array,
     type: String, // Add type as a prop if it's not part of each item
   },

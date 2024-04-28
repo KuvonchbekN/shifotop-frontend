@@ -10,15 +10,15 @@
           <div class="doctor-details">
             <h2 class="doctor-name">{{ doctor.firstname }} {{ doctor.lastname }}</h2>
             <p class="doctor-specialty">{{ doctor.specialities.map(speciality => speciality.name).join(', ') }}</p>
-            <div class="doctor-experience">Experience: {{ doctor.experience }} years</div>
+            <div class="doctor-experience">Tajribasi: {{ doctor.experience }} yil</div>
             <div class="doctor-rating">
               <StarRating :rating="doctor.rating"/> <!-- Use the StarRating component -->
-              <span class="reviews">{{ doctor.reviews.length }} reviews</span>
+              <span class="reviews">{{ doctor.reviews.length }} izohlar</span>
             </div>
             <div class="doctor-contact">
               <p class="doctor-phone">{{ doctor.phoneNumber }}</p>
               <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="details-button">
-                View Details
+                Malumotlarni ko'rish
               </router-link>
             </div>
           </div>
@@ -37,9 +37,9 @@
             <p class="clinic-address">
               {{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{ clinic.address.addressName }}
             </p>
-            <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
+            <p class="clinic-phone">Telefon raqami: {{ clinic.phoneNumber }}</p>
             <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>
@@ -50,9 +50,9 @@
         <div class="service-card" v-for="service in items" :key="service.id">
           <div class="service-details">
             <h2 class="service-name">{{ service.name }}</h2>
-            <p class="service-cost">Cost: {{ service.cost }} soums</p>
+            <p class="service-cost">Xizmat Narxi: {{ service.cost }} so'm</p>
             <router-link :to="{ name: 'serviceDetails', params: { serviceId: service.id } }" class="details-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>

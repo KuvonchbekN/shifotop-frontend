@@ -5,7 +5,7 @@
         <img class="detailed-doctor-image" :src="doctorDetails.profilePicture || defaultImage" alt="Doctor's profile" />
         <h1 class="detailed-doctor-name">{{ doctorDetails.firstname }} {{ doctorDetails.lastname }}</h1>
         <div class="doctor-specialities" v-if="doctorDetails.specialities && doctorDetails.specialities.length">
-          <h3>Specialities:</h3>
+          <h3>Mutaxassisliklar:</h3>
           <ul class="specialities-list">
             <li v-for="speciality in doctorDetails.specialities" :key="speciality.name">
               {{ speciality.name }}
@@ -17,26 +17,26 @@
             <StarRating :rating="doctorDetails.rating" />
           </div>
           <div v-if="doctorDetails.reviews" class="reviews">
-            <span>{{ doctorDetails.reviews.length }} reviews</span>
+            <span>{{ doctorDetails.reviews.length }} izohlar</span>
           </div>
         </div>
         <div class="doctor-price" v-if="doctorDetails.price">
-          <span>Price: {{ doctorDetails.price }} soums</span>
+          <span>Narxi: {{ doctorDetails.price }} so'm</span>
         </div>
       </div>
       <div class="detailed-doctor-body">
-        <p class="detailed-doctor-experience" v-if="doctorDetails.experience">Experience: {{ doctorDetails.experience }}
-          years</p>
-        <p class="detailed-doctor-description" v-if="doctorDetails.bio">Bio: {{ doctorDetails.bio }}</p>
+        <p class="detailed-doctor-experience" v-if="doctorDetails.experience">Tajriba: {{ doctorDetails.experience }}
+          yil</p>
+        <p class="detailed-doctor-description" v-if="doctorDetails.bio">Ma'lumot: {{ doctorDetails.bio }}</p>
         <div class="detailed-doctor-contact" v-if="doctorDetails.phoneNumber || doctorDetails.email">
-          <p class="detailed-doctor-phone" v-if="doctorDetails.phoneNumber">Phone: {{ doctorDetails.phoneNumber }}</p>
+          <p class="detailed-doctor-phone" v-if="doctorDetails.phoneNumber">Telefon raqami: {{ doctorDetails.phoneNumber }}</p>
           <p class="detailed-doctor-email" v-if="doctorDetails.email">Email: {{ doctorDetails.email }}</p>
         </div>
-        <router-link to="/doctors" class="back-button">← Back to List</router-link>
+        <router-link to="/doctors" class="back-button">← Barcha shifokorlar</router-link>
       </div>
 
       <div class="clinics-container" v-if="doctorDetails.clinics && doctorDetails.clinics.length">
-        <h2 class="clinics-title">Associated Clinics</h2>
+        <h2 class="clinics-title">Bu shifokor ishlaydigan shifoxonalar</h2>
         <div class="clinics-list">
           <div v-for="clinic in doctorDetails.clinics" :key="clinic.id" class="clinic-card">
             <div class="clinic-image-wrapper">
@@ -47,11 +47,11 @@
               <StarRating :rating="clinic.rating" />
               <p class="clinic-address">{{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{
                 clinic.address.addressName }}</p>
-              <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-              <p class="clinic-supervisor">Contact Person: {{ clinic.supervisorName }}</p>
+              <p class="clinic-phone">Telefon raqami: {{ clinic.phoneNumber }}</p>
+              <p class="clinic-supervisor">Javobgar shaxs: {{ clinic.supervisorName }}</p>
             </div>
             <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>
@@ -62,10 +62,10 @@
     <div class="reviews-container" v-if="doctorDetails.reviews && doctorDetails.reviews.length">
       <!-- adding review for this specific clinic feature -->
       <div class="review-form">
-        <h3>Add a review for this doctor:</h3>
-        <textarea v-model="newReview.content" placeholder="Write your review here..."></textarea>
+        <h3>Izoh qo'shish:</h3>
+        <textarea v-model="newReview.content" placeholder="Izohingizni shu yerga yozing..."></textarea>
         <div class="submit-rating">
-          <label for="rating">Your Rating:</label>
+          <label for="rating">Baholash:</label>
           <select v-model="newReview.rating" id="rating">
             <option value="5">★★★★★</option>
             <option value="4">★★★★☆</option>
@@ -74,10 +74,10 @@
             <option value="1">★☆☆☆☆</option>
           </select>
         </div>
-        <button @click="submitReview">Submit Review</button>
+        <button @click="submitReview">Izoh qoldirish</button>
       </div>
 
-      <h3 class="reviews-title">Reviews:</h3>
+      <h3 class="reviews-title">Izohlar:</h3>
       <ul class="reviews-list">
         <li v-for="review in doctorDetails.reviews" :key="review.id" class="review-item">
           <div class="review-content">{{ review.content }}</div>

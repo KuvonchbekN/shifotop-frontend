@@ -3,11 +3,11 @@
     <div class="detailed-service-card">
       <h1 class="service-title">{{ serviceDetails.name }}</h1>
       <!-- Add other service details here -->
-      <p>Cost: {{ serviceDetails.cost }} soums</p>
+      <p>Xizmat Narxi: {{ serviceDetails.cost }} so'm</p>
 
       <!--showing associated clinics with this service-->
       <div class="clinics-container" v-if="serviceDetails.clinics && serviceDetails.clinics.length">
-        <h2 class="clinics-title">Associated Clinics</h2>
+        <h2 class="clinics-title">Bu shifokor ishlaydigan shifoxonalar</h2>
         <div class="clinics-list">
           <div v-for="clinic in serviceDetails.clinics" :key="clinic.id" class="clinic-card">
             <div class="clinic-image-wrapper">
@@ -16,11 +16,11 @@
             <div class="clinic-details">
               <h3 class="clinic-name">{{ clinic.name }}</h3>
               <StarRating :rating="clinic.rating"/>
-              <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
-              <p class="clinic-supervisor">Contact Person: {{ clinic.supervisorName }}</p>
+              <p class="clinic-phone">Telefon raqami: {{ clinic.phoneNumber }}</p>
+              <p class="clinic-supervisor">Javobgar shaxs: {{ clinic.supervisorName }}</p>
             </div>
             <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>

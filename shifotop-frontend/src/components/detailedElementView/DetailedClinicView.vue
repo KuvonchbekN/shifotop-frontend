@@ -22,39 +22,39 @@
       </div>
       <div class="detailed-clinic-info">
         <div class="clinic-contact-info">
-          <h3>Contact</h3>
-          <p class="clinic-phone">Phone: {{ clinicDetails.phoneNumber }}</p>
-          <p class="clinic-supervisor">Contact Person: {{ clinicDetails.supervisorName }}</p>
+          <h3>Aloqa</h3>
+          <p class="clinic-phone">Telefon raqami: {{ clinicDetails.phoneNumber }}</p>
+          <p class="clinic-supervisor">Javobgar shaxs: {{ clinicDetails.supervisorName }}</p>
         </div>
         <div class="clinic-services">
-          <h3>Services Offered</h3>
+          <h3>Ko'rsatiladigan xizmatlar</h3>
           <ul>
             <li v-for="service in clinicDetails.medicalServices" :key="service.id">
-              {{ service.name }} - {{ service.cost }} soums
+              {{ service.name }} - {{ service.cost }} so'm
             </li>
           </ul>
         </div>
       </div>
       <div class="clinic-doctors">
-        <h3>Doctors at this Clinic:</h3>
+        <h3>Bu shifoxonadagi shifokorlar:</h3>
         <div class="doctor-cards-container">
           <div class="doctor-card" v-for="doctor in clinicDetails.doctors" :key="doctor.id">
             <div class="doctor-info">
               <h4 class="doctor-name">{{ doctor.firstname }} {{ doctor.lastname }}</h4>
-              <p class="doctor-experience">{{ doctor.experience }} years experience</p>
+              <p class="doctor-experience">{{ doctor.experience }} yillik tajriba</p>
               <StarRating :rating="doctor.rating" />
             </div>
             <router-link :to="{ name: 'doctorDetails', params: { doctorId: doctor.id } }" class="view-doctor-button">
-              View Details
+              Malumotlarni ko'rish
             </router-link>
           </div>
         </div>
       </div>
       <div class="clinic-reviews">
-        <h3>Reviews:</h3>
+        <h3>Izohlar:</h3>
         <div class="clinic-rating">
           <!-- <StarRating :rating="clinicDetails.rating" /> -->
-          <span>{{ clinicDetails.reviews?.length }} reviews</span>
+          <span>{{ clinicDetails.reviews?.length }} izohlar</span>
         </div>
         <ul>
           <li v-for="review in clinicDetails.reviews" :key="review.id">
@@ -66,10 +66,10 @@
 
       <!-- adding review for this specific clinic feature -->
       <div class="review-form">
-        <h3>Add a Review:</h3>
-        <textarea v-model="newReview.content" placeholder="Write your review here..."></textarea>
+        <h3>Izoh qoldirish:</h3>
         <div class="submit-rating">
-          <label for="rating">Your Rating:</label>
+          <textarea v-model="newReview.content" placeholder="Izohingizni shu yerga yozing..."></textarea>
+          <label for="rating">Baholash:</label>
           <select v-model="newReview.rating" id="rating">
             <option value="5">★★★★★</option>
             <option value="4">★★★★☆</option>
@@ -78,10 +78,10 @@
             <option value="1">★☆☆☆☆</option>
           </select>
         </div>
-        <button @click="submitReview">Submit Review</button>
+        <button @click="submitReview">Izoh qoldirish</button>
       </div>
     </div>
-    <router-link to="/clinics" class="back-button">← Back to Clinics</router-link>
+    <router-link to="/clinics" class="back-button">← Barcha shifoxonalar</router-link>
   </div>
 </template>
 

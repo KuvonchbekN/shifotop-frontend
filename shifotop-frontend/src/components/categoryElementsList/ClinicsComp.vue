@@ -10,9 +10,9 @@
         <p class="clinic-address">
           {{ clinic.address.regionName }}, {{ clinic.address.cityName }}, {{ clinic.address.addressName }}
         </p>
-        <p class="clinic-phone">Phone: {{ clinic.phoneNumber }}</p>
+        <p class="clinic-phone">Telefon raqami: {{ clinic.phoneNumber }}</p>
         <router-link :to="{ name: 'clinicDetails', params: { clinicId: clinic.id } }" class="details-button">
-          View Details
+          Malumotlarni ko'rish
         </router-link>
       </div>
     </div>

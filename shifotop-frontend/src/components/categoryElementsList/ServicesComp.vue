@@ -3,9 +3,9 @@
     <div class="service-card" v-for="service in services" :key="service.id">
       <div class="service-details">
         <h2 class="service-name">{{ service.name }}</h2>
-        <p class="service-cost">Cost: {{ service.cost }} soums</p>
+        <p class="service-cost">Xizmat Narxi: {{ service.cost }} so'm</p>
         <router-link :to="{ name: 'serviceDetails', params: { serviceId: service.id } }" class="details-button">
-          View Details
+          Malumotlarni ko'rish
         </router-link>
       </div>
     </div>

@@ -6,16 +6,18 @@
     </div>
     <div class="logo">Shifo<span>Top</span></div>
     <div class="user-cabinet">
-      <button><i class="fa fa-user"></i>Kabinet</button>
+      <button>
+        <router-link to="/cabinet" class="back-home">
+          <i class="fa fa-user"></i>Kabinet
+        </router-link>
+      </button>
     </div>
   </header>
 </template>
 
 
 <script>
-export default {
-
-};
+export default {};
 </script>
 
 <style scoped>
@@ -28,7 +30,7 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-i{
+i {
   margin-right: 5px;
 }
 
@@ -38,7 +40,7 @@ i{
   color: #1a7ddc;
 }
 
-.logo > span{
+.logo > span {
   color: red;
 }
 
@@ -79,5 +81,10 @@ i{
   border-radius: 5px;
   cursor: pointer;
 }
+
+.back-home{
+  text-decoration: none;
+}
+
 </style>
 

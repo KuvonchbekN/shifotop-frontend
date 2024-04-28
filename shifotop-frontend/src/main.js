@@ -25,6 +25,7 @@ import HelpComp from "@/components/footerComps/HelpComp.vue";
 import PerformancesComp from "@/components/footerComps/PerformancesComp.vue";
 import ContactComp from "@/components/footerComps/ContactComp.vue";
 import TermsComp from "@/components/footerComps/TermsComp.vue";
+import CabinetComp from "@/components/mainPage/CabinetComp.vue";
 
 // Create router instance
 const router = createRouter({
@@ -39,6 +40,7 @@ const router = createRouter({
         {name: 'doctors', path: '/doctors', component: DoctorsComp},
         {name: 'clinics', path: '/clinics', component: ClinicsComp},
         {name: 'services', path: '/services', component: ServicesComp},
+        {name: 'cabinet', path:'/cabinet', component: CabinetComp},
 
         //footer elements
         {name: 'searchResults', path: '/search', component: SearchResults},
